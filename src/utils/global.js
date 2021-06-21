@@ -38,7 +38,11 @@ body {
     line-height: 1.6;
 }
 
-button {
+a, button {
+    cursor: pointer;
+}
+
+a, input, textarea, button {
     outline: none;
     font-family: inherit;
     text-decoration: none;
