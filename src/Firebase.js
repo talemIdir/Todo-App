@@ -3,7 +3,7 @@ import "firebase/firestore";
 import "firebase/auth";
 
 const config = {
-  apiKey: process.env.REACT_APP_APIKEY,
+  apiKey: process.env.REACT_APP_APIKey,
   authDomain: "todos-auth-bf3d9.firebaseapp.com",
   projectId: "todos-auth-bf3d9",
   storageBucket: "todos-auth-bf3d9.appspot.com",

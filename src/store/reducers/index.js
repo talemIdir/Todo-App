@@ -3,7 +3,9 @@ import { combineReducers } from "redux";
 
 import authReducer from "./authReducer";
 
-export default combineReducers({
+const rootReducer = combineReducers({
   auth: authReducer,
   firebase: firebaseReducer,
 });
+
+export default rootReducer;
