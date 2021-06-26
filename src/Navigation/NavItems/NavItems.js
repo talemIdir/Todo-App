@@ -7,8 +7,17 @@ const NavItems = (props) => {
   return (
     <Nav>
       <Ul>
-        <NavItem link="/">home</NavItem>
-        {props.uid && <NavItem link="/todos">todos</NavItem>}
+        {props.uid ? (
+          <>
+            <NavItem link="/">home</NavItem>
+            <NavItem link="/todos">todos</NavItem>
+          </>
+        ) : (
+          <>
+            <NavItem link="/SignUp">Sign Up</NavItem>
+            <NavItem link="/SignIn">Sign In</NavItem>
+          </>
+        )}
       </Ul>
     </Nav>
   );

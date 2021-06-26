@@ -20,7 +20,7 @@ const Wrapper = styled.div`
   top: 0;
   left: 0;
   width: 100%;
-  height: 6rem;
+  min-height: 6rem;
   background-color: var(--color-main);
 
   display: flex;

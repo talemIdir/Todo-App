@@ -3,12 +3,6 @@ import { connect } from "react-redux";
 import { signIn, signOut } from "../../store/actions/authActions";
 
 const Home = (props) => {
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Clicked");
-    props.signIn();
-  };
-
   const handleSignOut = (e) => {
     e.preventDefault();
     console.log("Sign Out");
@@ -17,9 +11,6 @@ const Home = (props) => {
 
   return (
     <div>
-      <button type="submit" onClick={handleSubmit}>
-        Sign in
-      </button>
       <button type="submit" onClick={handleSignOut}>
         Sign iout
       </button>

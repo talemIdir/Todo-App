@@ -8,17 +8,27 @@ import Layout from "./layout/Layout";
 import Home from "./containers/Home/Home";
 import Todos from "./containers/Todos/Todos";
 import { connect } from "react-redux";
+import { SignIn } from "./containers/SignIn/SignIn";
+import SignUp from "./containers/SignUp/SignUp";
 
 const App = (props) => {
   return (
     <BrowserRouter>
       <Layout>
         <ToastContainer />
-        <Switch>
-          <Route path="/" component={Home} exact />
-          {props.uid && <Route path="/todos" component={Todos} exact />}
-          <Redirect to="/" />
-        </Switch>
+        {props.uid ? (
+          <Switch>
+            <Route path="/" component={Home} exact />
+            <Route path="/todos" component={Todos} exact />
+            <Redirect to="/" />
+          </Switch>
+        ) : (
+          <Switch>
+            <Route path="/SignIn" component={SignIn} exact />
+            <Route path="/SignUp" component={SignUp} exact />
+            <Redirect to="/SignUp" />
+          </Switch>
+        )}
       </Layout>
     </BrowserRouter>
   );
