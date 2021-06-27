@@ -1,32 +1,17 @@
 import React from "react";
-import { connect } from "react-redux";
 import styled from "styled-components";
+
 import NavItem from "./NavItem/NavItem";
 
-const NavItems = (props) => {
+const NavItems = () => {
   return (
     <Nav>
       <Ul>
-        {props.uid ? (
-          <>
-            <NavItem link="/">home</NavItem>
-            <NavItem link="/todos">todos</NavItem>
-          </>
-        ) : (
-          <>
-            <NavItem link="/SignUp">Sign Up</NavItem>
-            <NavItem link="/SignIn">Sign In</NavItem>
-          </>
-        )}
+        <NavItem link="/">home</NavItem>
+        <NavItem link="/todos">todos</NavItem>
       </Ul>
     </Nav>
   );
-};
-
-const mapStateToProps = (state) => {
-  return {
-    uid: state.firebase.auth.uid,
-  };
 };
 
 const Nav = styled.nav`
@@ -39,4 +24,4 @@ const Ul = styled.ul`
   align-items: center;
 `;
 
-export default connect(mapStateToProps)(NavItems);
+export default NavItems;

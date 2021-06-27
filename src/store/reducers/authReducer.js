@@ -1,21 +1,36 @@
 import { toast } from "react-toastify";
 
-const initialState = {};
+const initialState = {
+  loading: false,
+  error: null,
+};
 
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
+    case "SIGN_IN_START":
+      return { ...state, loading: true };
     case "SIGN_IN":
       toast("Signed in");
-      return state;
+      return { ...state, loading: false };
     case "SIGN_IN_ERR":
-      toast.error("Sign in Error");
-      return state;
+      toast.error("Sign in Error, please re-try");
+      return { ...state, loading: false };
+    case "SIGN_OUT_START":
+      return { ...state, loading: true };
     case "SIGN_OUT":
-      toast.error("Sign out");
-      return state;
+      toast("Sign out");
+      return { ...state, loading: false };
     case "SIGN_OUT_ERR":
-      toast.error("Sign out Error");
-      return state;
+      toast.error("Sign out Error, please re-try");
+      return { ...state, loading: false };
+    case "SIGN_UP_START":
+      return { ...state, loading: true };
+    case "SIGN_UP":
+      toast.success("Signed up successfully");
+      return { ...state, loading: false };
+    case "SIGN_UP_ERR":
+      toast.error("" + action.payload.error);
+      return { ...state, loading: false };
     default:
       return state;
   }

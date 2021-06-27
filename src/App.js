@@ -14,22 +14,22 @@ import SignUp from "./containers/SignUp/SignUp";
 const App = (props) => {
   return (
     <BrowserRouter>
-      <Layout>
-        <ToastContainer />
-        {props.uid ? (
+      <ToastContainer />
+      {props.uid ? (
+        <Layout>
           <Switch>
             <Route path="/" component={Home} exact />
             <Route path="/todos" component={Todos} exact />
             <Redirect to="/" />
           </Switch>
-        ) : (
-          <Switch>
-            <Route path="/SignIn" component={SignIn} exact />
-            <Route path="/SignUp" component={SignUp} exact />
-            <Redirect to="/SignUp" />
-          </Switch>
-        )}
-      </Layout>
+        </Layout>
+      ) : (
+        <Switch>
+          <Route path="/SignIn" component={SignIn} exact />
+          <Route path="/SignUp" component={SignUp} exact />
+          <Redirect to="/SignUp" />
+        </Switch>
+      )}
     </BrowserRouter>
   );
 };

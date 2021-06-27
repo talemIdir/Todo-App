@@ -4,6 +4,7 @@ import App from "./App";
 import { ThemeProvider } from "styled-components";
 import { ReactReduxFirebaseProvider } from "react-redux-firebase";
 import { createFirestoreInstance } from "redux-firestore";
+import { ChakraProvider } from "@chakra-ui/react";
 
 import theme from "./utils/theme";
 import GlobalStyles from "./utils/global";
@@ -24,12 +25,14 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <ReactReduxFirebaseProvider {...rrfProps}>
-        <ThemeProvider theme={theme}>
-          <>
-            <App />
-            <GlobalStyles />
-          </>
-        </ThemeProvider>
+        <ChakraProvider>
+          <ThemeProvider theme={theme}>
+            <>
+              <App />
+              <GlobalStyles />
+            </>
+          </ThemeProvider>
+        </ChakraProvider>
       </ReactReduxFirebaseProvider>
     </Provider>
   </React.StrictMode>,

@@ -1,13 +1,14 @@
 import React from "react";
 import styled from "styled-components";
+import { connect } from "react-redux";
 
 import Navbar from "../Navigation/Navbar/Navbar";
 
-const Layout = ({ children }) => {
+const Layout = (props) => {
   return (
     <>
-      <Navbar></Navbar>
-      <MainWrapper>{children}</MainWrapper>
+      {props.uid && <Navbar />}
+      <MainWrapper>{props.children}</MainWrapper>
     </>
   );
 };
@@ -18,4 +19,10 @@ const MainWrapper = styled.div`
   margin-top: 6rem;
 `;
 
-export default Layout;
+const mapStateToProps = (state) => {
+  return {
+    uid: state.firebase.auth.uid,
+  };
+};
+
+export default connect(mapStateToProps)(Layout);
