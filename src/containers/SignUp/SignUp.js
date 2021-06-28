@@ -14,7 +14,7 @@ const SignUp = (props) => {
 
   return (
     <Flex h="100vh">
-      <Center flex={{ base: 1, md: 1.2, lg: 1 }}>
+      <Center flex={{ base: 1, md: 1.3, lg: 1 }} bg="gray.100">
         <SignUpForm />
       </Center>
       <Box flex={{ base: 0, md: 1, lg: 1 }}>

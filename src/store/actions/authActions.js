@@ -21,7 +21,7 @@ export const signUp = (credentials) => {
 export const signIn = (credentials) => {
   return (dispatch, getState, { getFirebase }) => {
     const firebase = getFirebase();
-
+    dispatch({ type: "SIGN_IN_START" });
     firebase
       .auth()
       .signInWithEmailAndPassword(credentials.email, credentials.password)
@@ -29,7 +29,7 @@ export const signIn = (credentials) => {
         dispatch({ type: "SIGN_IN" });
       })
       .catch((err) => {
-        dispatch({ type: "SIGN_IN_ERR" }, err);
+        dispatch({ type: "SIGN_IN_ERR", payload: { error: err } });
       });
   };
 };

@@ -10,10 +10,18 @@ const authReducer = (state = initialState, action) => {
     case "SIGN_IN_START":
       return { ...state, loading: true };
     case "SIGN_IN":
-      toast("Signed in");
+      toast("Signed in", {
+        autoClose: 3000,
+        draggable: false,
+        progress: undefined,
+      });
       return { ...state, loading: false };
     case "SIGN_IN_ERR":
-      toast.error("Sign in Error, please re-try");
+      toast.error("" + action.payload.error, {
+        autoClose: 3000,
+        draggable: false,
+        progress: undefined,
+      });
       return { ...state, loading: false };
     case "SIGN_OUT_START":
       return { ...state, loading: true };

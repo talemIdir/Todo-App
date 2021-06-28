@@ -1,11 +1,11 @@
-import { VStack, Heading, Text, HStack, Button } from "@chakra-ui/react";
-import MyFormControl from "../../../components/FormComponent/MyFormControl";
 import React, { useState } from "react";
-import { signUp } from "../../../store/actions/authActions";
-import { connect } from "react-redux";
+import MyFormControl from "../../../components/FormComponent/MyFormControl";
+import { VStack, Heading, Text, HStack, Button } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
+import { signIn } from "../../../store/actions/authActions";
+import { connect } from "react-redux";
 
-const SignUpForm = (props) => {
+const SignInForm = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -18,9 +18,8 @@ const SignUpForm = (props) => {
   };
 
   const handleSubmit = (e) => {
-    props.signUp({ email: email, password: password });
+    props.signIn({ email: email, password: password });
   };
-
   return (
     <VStack
       spacing="5"
@@ -29,30 +28,19 @@ const SignUpForm = (props) => {
       rounded="md"
       bg="white"
       borderRadius="xl"
+      flex={{ base: 0.8, sm: 0.6, md: 0.6, lg: 0.6 }}
     >
-      <Heading size="4xl">Create account</Heading>
+      <Heading size="4xl">Sign In</Heading>
       <HStack fontSize="xl">
-        <Text>Already have an account?</Text>
+        <Text>Don't have an account?</Text>
         <Text
           textDecoration="underline"
           color="blue.500"
           fontWeight="extrabold"
         >
-          <Link to="/SignIn">Sign in</Link>
+          <Link to="/SignUp">Sign up</Link>
         </Text>
       </HStack>
-      <MyFormControl
-        id="firstName"
-        label="First name"
-        type="text"
-        placeholder="Enter your first name"
-      />
-      <MyFormControl
-        id="lastName"
-        label="Last name"
-        type="text"
-        placeholder="Enter your last name"
-      />
       <MyFormControl
         id="email"
         label="Email"
@@ -79,7 +67,7 @@ const SignUpForm = (props) => {
         spinnerPlacement="start"
         onClick={handleSubmit}
       >
-        Sign Up
+        Sign In
       </Button>
     </VStack>
   );
@@ -93,11 +81,11 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    signUp: (credentials) =>
+    signIn: (credentials) =>
       dispatch(
-        signUp({ email: credentials.email, password: credentials.password })
+        signIn({ email: credentials.email, password: credentials.password })
       ),
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignUpForm);
+export default connect(mapStateToProps, mapDispatchToProps)(SignInForm);

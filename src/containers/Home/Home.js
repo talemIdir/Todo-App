@@ -27,8 +27,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    signIn: () =>
-      dispatch(signIn({ email: "idir.talem@gmail.com", password: "123456" })),
     signOut: () => dispatch(signOut()),
   };
 };

@@ -27,7 +27,7 @@ const App = (props) => {
         <Switch>
           <Route path="/SignIn" component={SignIn} exact />
           <Route path="/SignUp" component={SignUp} exact />
-          <Redirect to="/SignUp" />
+          <Redirect to="/SignIn" />
         </Switch>
       )}
     </BrowserRouter>
