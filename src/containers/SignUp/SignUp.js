@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Box, Center, Flex, HStack, Image } from "@chakra-ui/react";
+import { Box, Center, Flex, Image } from "@chakra-ui/react";
 
 import { signIn, signOut } from "../../store/actions/authActions";
 import SignUpForm from "./SignUpForm/SignUpForm";

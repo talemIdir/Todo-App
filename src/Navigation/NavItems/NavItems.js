@@ -8,7 +8,6 @@ const NavItems = () => {
     <Nav>
       <Ul>
         <NavItem link="/">home</NavItem>
-        <NavItem link="/todos">todos</NavItem>
       </Ul>
     </Nav>
   );

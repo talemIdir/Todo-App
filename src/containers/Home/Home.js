@@ -1,6 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
-import { signIn, signOut } from "../../store/actions/authActions";
+import { signOut } from "../../store/actions/authActions";
+import Projects from "./Projects/Projects";
+import { HStack } from "@chakra-ui/react";
+import Todos from "./Todos/Todos";
 
 const Home = (props) => {
   const handleSignOut = (e) => {
@@ -10,12 +13,10 @@ const Home = (props) => {
   };
 
   return (
-    <div>
-      <button type="submit" onClick={handleSignOut}>
-        Sign iout
-      </button>
-      {props.uid && <div>{props.uid}</div>}
-    </div>
+    <HStack height="calc(100vh - 6rem)">
+      <Projects userUID={props.uid} />
+      <Todos />
+    </HStack>
   );
 };
 

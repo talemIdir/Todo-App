@@ -6,20 +6,21 @@ import { BrowserRouter } from "react-router-dom";
 
 import Layout from "./layout/Layout";
 import Home from "./containers/Home/Home";
-import Todos from "./containers/Todos/Todos";
 import { connect } from "react-redux";
 import { SignIn } from "./containers/SignIn/SignIn";
 import SignUp from "./containers/SignUp/SignUp";
 
-const App = (props) => {
+const App = ({ uid, isInit }) => {
+  console.log(isInit);
   return (
     <BrowserRouter>
       <ToastContainer />
-      {props.uid ? (
+      {isInit ? (
+        console.log("init")
+      ) : uid ? (
         <Layout>
           <Switch>
             <Route path="/" component={Home} exact />
-            <Route path="/todos" component={Todos} exact />
             <Redirect to="/" />
           </Switch>
         </Layout>
@@ -37,6 +38,7 @@ const App = (props) => {
 const mapStateToProps = (state) => {
   return {
     uid: state.firebase.auth.uid,
+    isInit: state.firebase.isInitializing,
   };
 };
 
