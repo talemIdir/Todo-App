@@ -2,13 +2,11 @@ import { useEffect, useState } from "react";
 import firebase from "../Firebase";
 
 export const useProjects = (userUID) => {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    setIsLoading(true);
-
     const getProjects = firebase
       .firestore()
       .collection("projects")
@@ -20,10 +18,10 @@ export const useProjects = (userUID) => {
             docId: project.id,
           }));
           setData(newProjects);
-          setIsLoading(false);
         },
         (error) => setIsError(error)
       );
+    setIsLoading(false);
     return () => {
       getProjects();
     };

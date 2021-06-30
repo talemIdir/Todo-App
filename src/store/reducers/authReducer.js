@@ -1,6 +1,7 @@
 import { toast } from "react-toastify";
 
 const initialState = {
+  logedIn: false,
   loading: false,
   error: null,
 };
@@ -15,7 +16,7 @@ const authReducer = (state = initialState, action) => {
         draggable: false,
         progress: undefined,
       });
-      return { ...state, loading: false };
+      return { ...state, loading: false, logedIn: true };
     case "SIGN_IN_ERR":
       toast.error("" + action.payload.error, {
         autoClose: 3000,
@@ -27,7 +28,7 @@ const authReducer = (state = initialState, action) => {
       return { ...state, loading: true };
     case "SIGN_OUT":
       toast("Sign out");
-      return { ...state, loading: false };
+      return { ...state, loading: false, logedIn: false };
     case "SIGN_OUT_ERR":
       toast.error("Sign out Error, please re-try");
       return { ...state, loading: false };

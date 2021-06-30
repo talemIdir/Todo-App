@@ -1,13 +1,21 @@
 import React from "react";
+import { connect } from "react-redux";
 import styled from "styled-components";
+import { signOut } from "../../store/actions/authActions";
 
 import NavItem from "./NavItem/NavItem";
 
-const NavItems = () => {
+const NavItems = (props) => {
+  const handleSignOut = (e) => {
+    e.preventDefault();
+    console.log("Sign Out");
+    props.signOut();
+  };
   return (
     <Nav>
       <Ul>
         <NavItem link="/">home</NavItem>
+        <NavItem handleSignOut={handleSignOut}>Sign out</NavItem>
       </Ul>
     </Nav>
   );
@@ -23,4 +31,10 @@ const Ul = styled.ul`
   align-items: center;
 `;
 
-export default NavItems;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    signOut: () => dispatch(signOut()),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(NavItems);
