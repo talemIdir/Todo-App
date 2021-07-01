@@ -17,15 +17,12 @@ function AuthIsLoaded({ children }) {
   return children;
 }
 
-const App = ({ uid, isInit }) => {
-  console.log(isInit);
+const App = ({ uid }) => {
   return (
     <BrowserRouter>
       <ToastContainer />
       <AuthIsLoaded>
-        {isInit ? (
-          console.log("init")
-        ) : uid ? (
+        {uid ? (
           <Layout>
             <Switch>
               <Route path="/" component={Home} exact />
@@ -47,7 +44,6 @@ const App = ({ uid, isInit }) => {
 const mapStateToProps = (state) => {
   return {
     uid: state.firebase.auth.uid,
-    isInit: state.firebase.isInitializing,
   };
 };
 

@@ -2,15 +2,16 @@ import React from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
 import { signOut } from "../../store/actions/authActions";
+import { selectProject } from "../../store/actions/projectActions";
 
 import NavItem from "./NavItem/NavItem";
 
 const NavItems = (props) => {
   const handleSignOut = (e) => {
     e.preventDefault();
-    console.log("Sign Out");
     props.signOut();
   };
+
   return (
     <Nav>
       <Ul>

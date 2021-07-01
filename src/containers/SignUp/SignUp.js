@@ -8,7 +8,6 @@ import SignUpForm from "./SignUpForm/SignUpForm";
 const SignUp = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Clicked");
     props.signIn();
   };
 

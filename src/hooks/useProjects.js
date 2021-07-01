@@ -21,6 +21,7 @@ export const useProjects = (userUID) => {
         },
         (error) => setIsError(error)
       );
+
     setIsLoading(false);
     return () => {
       getProjects();

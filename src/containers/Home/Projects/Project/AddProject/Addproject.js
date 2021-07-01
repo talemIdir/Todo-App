@@ -30,6 +30,7 @@ const Addproject = ({ userUID }) => {
       .catch((error) => {
         console.error("Error adding document: ", error);
       });
+    setName("");
     setIsLoading(false);
   };
 

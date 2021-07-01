@@ -5,27 +5,25 @@ import {
   Text,
   useDisclosure,
   VStack,
-  Stack,
   Skeleton,
   Container,
 } from "@chakra-ui/react";
 import React from "react";
-import { useProjects } from "../../../hooks/useProjects";
+
 import Addproject from "./Project/AddProject/Addproject";
 import Project from "./Project/Project";
 
-const Projects = ({ userUID }) => {
-  const { data: projects, isLoading } = useProjects(userUID);
+const Projects = ({ userUID, projects }) => {
   const { isOpen, onToggle } = useDisclosure();
 
   return (
     <VStack
       flex="1"
-      bg="#181820"
+      bg="#21212B"
       borderTop="3px solid black"
       height="calc(100vh - 6rem)"
       color="gray.400"
-      alignItems="flex-start"
+      alignItems="center"
     >
       <HStack
         width="100%"
@@ -55,9 +53,20 @@ const Projects = ({ userUID }) => {
         </Collapse>
       </Container>
 
-      <Skeleton isLoaded={!isLoading} h="16" alignSelf="center" w="90%">
-        {projects.map((project) => {
-          return <Project key={project.docId} name={project.name} />;
+      <Skeleton
+        isLoaded={!projects.isLoading}
+        h="16"
+        alignSelf="center"
+        w="90%"
+      >
+        {projects.data.map((project) => {
+          return (
+            <Project
+              key={project.docId}
+              name={project.name}
+              docId={project.docId}
+            />
+          );
         })}
       </Skeleton>
     </VStack>
