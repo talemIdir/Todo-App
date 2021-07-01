@@ -6,31 +6,40 @@ import { BrowserRouter } from "react-router-dom";
 
 import Layout from "./layout/Layout";
 import Home from "./containers/Home/Home";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import { SignIn } from "./containers/SignIn/SignIn";
 import SignUp from "./containers/SignUp/SignUp";
+import { isLoaded } from "react-redux-firebase";
+
+function AuthIsLoaded({ children }) {
+  const auth = useSelector((state) => state.firebase.auth);
+  if (!isLoaded(auth)) return <div>splash screen...</div>;
+  return children;
+}
 
 const App = ({ uid, isInit }) => {
   console.log(isInit);
   return (
     <BrowserRouter>
       <ToastContainer />
-      {isInit ? (
-        console.log("init")
-      ) : uid ? (
-        <Layout>
+      <AuthIsLoaded>
+        {isInit ? (
+          console.log("init")
+        ) : uid ? (
+          <Layout>
+            <Switch>
+              <Route path="/" component={Home} exact />
+              <Redirect to="/" />
+            </Switch>
+          </Layout>
+        ) : (
           <Switch>
-            <Route path="/" component={Home} exact />
-            <Redirect to="/" />
+            <Route path="/SignIn" component={SignIn} exact />
+            <Route path="/SignUp" component={SignUp} exact />
+            <Redirect to="/SignIn" />
           </Switch>
-        </Layout>
-      ) : (
-        <Switch>
-          <Route path="/SignIn" component={SignIn} exact />
-          <Route path="/SignUp" component={SignUp} exact />
-          <Redirect to="/SignIn" />
-        </Switch>
-      )}
+        )}
+      </AuthIsLoaded>
     </BrowserRouter>
   );
 };
