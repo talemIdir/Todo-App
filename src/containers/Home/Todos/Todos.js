@@ -2,7 +2,9 @@ import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
 import { Flex, Heading, HStack, Text, VStack } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { connect } from "react-redux";
+
 import { selectProject } from "../../../store/actions/projectActions";
+import OnGoingTodos from "./OnGoingTodos";
 
 const Todos = ({ projects, selectedProject, selectProject }) => {
   const handleSelectProject = (previous, index) => {
@@ -71,6 +73,7 @@ const Todos = ({ projects, selectedProject, selectProject }) => {
             <ChevronRightIcon w={6} h={6} boxSize={8} />
           </HStack>
         </Flex>
+        <OnGoingTodos />
       </VStack>
     </Flex>
   );
