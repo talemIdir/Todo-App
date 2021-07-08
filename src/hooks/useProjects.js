@@ -18,11 +18,11 @@ export const useProjects = (userUID) => {
             docId: project.id,
           }));
           setData(newProjects);
+          setIsLoading(false);
         },
         (error) => setIsError(error)
       );
 
-    setIsLoading(false);
     return () => {
       getProjects();
     };

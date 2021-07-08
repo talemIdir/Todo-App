@@ -1,9 +1,10 @@
 import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
 import { Flex, Heading, HStack, Text, VStack } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React from "react";
 import { connect } from "react-redux";
 
 import { selectProject } from "../../../store/actions/projectActions";
+import CompletedTodos from "./CompletedTodos";
 import OnGoingTodos from "./OnGoingTodos";
 
 const Todos = ({ projects, selectedProject, selectProject }) => {
@@ -23,9 +24,9 @@ const Todos = ({ projects, selectedProject, selectProject }) => {
     }
   };
 
-  const projectIndex = projects.data.findIndex((project) => {
-    if (project.docId === selectedProject.docId) return project;
-  });
+  const projectIndex = projects.data.findIndex(
+    (project) => project.docId === selectedProject.docId
+  );
 
   return (
     <Flex
@@ -73,7 +74,8 @@ const Todos = ({ projects, selectedProject, selectProject }) => {
             <ChevronRightIcon w={6} h={6} boxSize={8} />
           </HStack>
         </Flex>
-        <OnGoingTodos />
+        <OnGoingTodos selectedProject={selectedProject} />
+        <CompletedTodos selectedProject={selectedProject} />
       </VStack>
     </Flex>
   );

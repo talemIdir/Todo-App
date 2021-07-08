@@ -3,13 +3,13 @@ import React from "react";
 import { useTodos } from "../../../hooks/useTodos";
 import Todo from "./Todo/Todo";
 
-const OnGoingTodos = ({ selectedProject }) => {
-  const { data: todos, isLoading, isError } = useTodos(selectedProject, false);
+const CompletedTodos = ({ selectedProject }) => {
+  const { data: todos, isLoading, isError } = useTodos(selectedProject, true);
 
   return (
     <VStack flex="1" width="100%">
       <Text alignSelf="flex-start" fontSize="2xl">
-        On Going Todos - {!isLoading && todos.length}
+        Completed Todos - {!isLoading && todos.length}
       </Text>
       {isLoading ? (
         <Skeleton h="16" alignSelf="center" w="90%" />
@@ -22,4 +22,4 @@ const OnGoingTodos = ({ selectedProject }) => {
   );
 };
 
-export default OnGoingTodos;
+export default CompletedTodos;
