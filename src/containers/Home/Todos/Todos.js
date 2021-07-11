@@ -42,8 +42,12 @@ const Todos = ({ projects, selectedProject, selectProject }) => {
         justifyContent="flex-start"
         color="white"
       >
-        <Flex width="100%" alignItems="center" justifyContent="space-between">
+        <Flex width="100%" alignItems="center">
           <HStack
+            flex="1"
+            justifyContent="flex-start"
+            overflow="hidden"
+            textOverflow="ellipsis"
             p={5}
             _hover={{
               background: "gray.700",
@@ -56,9 +60,16 @@ const Todos = ({ projects, selectedProject, selectProject }) => {
               <Text fontSize="2xl">{projects.data[projectIndex - 1].name}</Text>
             )}
           </HStack>
-          <Heading>{selectedProject.name}</Heading>
+
+          <Heading flex="2" textAlign="center">
+            {selectedProject.name}
+          </Heading>
           <HStack
+            flex="1"
+            justifyContent="flex-end"
             p={5}
+            overflow="hidden"
+            textOverflow="ellipsis"
             _hover={{
               background: "gray.700",
               cursor: "pointer",

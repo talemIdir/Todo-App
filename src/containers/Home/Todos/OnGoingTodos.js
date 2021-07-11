@@ -12,7 +12,13 @@ const OnGoingTodos = ({ selectedProject }) => {
         On Going Todos - {!isLoading && todos.length}
       </Text>
       {isLoading ? (
-        <Skeleton h="16" alignSelf="center" w="90%" />
+        <Skeleton
+          h="16"
+          alignSelf="center"
+          w="100%"
+          startColor="grey"
+          endColor="#21212B"
+        />
       ) : (
         todos.map((todo) => {
           return <Todo key={todo.docId} todo={todo} />;
