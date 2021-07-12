@@ -16,6 +16,8 @@ import Project from "./Project/Project";
 const Projects = ({ userUID, projects }) => {
   const { isOpen, onToggle } = useDisclosure();
 
+  console.log(projects);
+
   return (
     <VStack
       flex="1"

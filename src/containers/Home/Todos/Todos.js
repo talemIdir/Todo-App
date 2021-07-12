@@ -1,13 +1,26 @@
 import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
-import { Flex, Heading, HStack, Text, VStack } from "@chakra-ui/react";
+import {
+  CircularProgress,
+  Flex,
+  Heading,
+  HStack,
+  Text,
+  VStack,
+  Center,
+} from "@chakra-ui/react";
 import React from "react";
 import { connect } from "react-redux";
+import { useTodos } from "../../../hooks/useTodos";
 
 import { selectProject } from "../../../store/actions/projectActions";
 import CompletedTodos from "./CompletedTodos";
 import OnGoingTodos from "./OnGoingTodos";
 
 const Todos = ({ projects, selectedProject, selectProject }) => {
+  const { completedTasks, onGoingTasks, isLoading, isError } = useTodos(
+    selectedProject
+  );
+
   const handleSelectProject = (previous, index) => {
     if (previous) {
       if (index >= 0 && projects.data.length > 0)
@@ -85,8 +98,16 @@ const Todos = ({ projects, selectedProject, selectProject }) => {
             <ChevronRightIcon w={6} h={6} boxSize={8} />
           </HStack>
         </Flex>
-        <OnGoingTodos selectedProject={selectedProject} />
-        <CompletedTodos selectedProject={selectedProject} />
+        {isLoading ? (
+          <Center flex="1">
+            <CircularProgress isIndeterminate color="pink.400" />
+          </Center>
+        ) : (
+          <>
+            <OnGoingTodos tasks={onGoingTasks} />
+            <CompletedTodos tasks={completedTasks} />
+          </>
+        )}
       </VStack>
     </Flex>
   );

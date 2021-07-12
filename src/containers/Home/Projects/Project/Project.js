@@ -1,6 +1,8 @@
-import { Flex, Text } from "@chakra-ui/react";
+import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
+import { Container, Flex, HStack, Text, useDisclosure } from "@chakra-ui/react";
 import React from "react";
 import { connect } from "react-redux";
+import DeleteProjectModal from "../../../../components/Modal/DeleteProjectModal";
 import { selectProject } from "../../../../store/actions/projectActions";
 
 const Project = (props) => {
@@ -9,11 +11,15 @@ const Project = (props) => {
     props.selectProject({ name: props.name, docId: props.docId });
   };
 
+  const deleteModal = useDisclosure();
+
   return (
     <Flex
       as="a"
-      pl="25"
+      pl="15"
+      pr="5"
       alignItems="center"
+      justifyContent="space-between"
       h="16"
       w="100%"
       _hover={{
@@ -21,9 +27,33 @@ const Project = (props) => {
       }}
       onClick={handleSelectProject}
     >
+      <DeleteProjectModal
+        isOpen={deleteModal.isOpen}
+        onClose={deleteModal.onClose}
+        project={{ name: props.name, docId: props.docId }}
+      />
       <Text fontSize="2xl" color="whiteAlpha.800">
         {props.name}
       </Text>
+      <HStack>
+        <EditIcon
+          w={6}
+          h={6}
+          _hover={{
+            color: "white",
+            cursor: "pointer",
+          }}
+        />
+        <DeleteIcon
+          onClick={deleteModal.onOpen}
+          w={6}
+          h={6}
+          _hover={{
+            color: "red.300",
+            cursor: "pointer",
+          }}
+        />
+      </HStack>
     </Flex>
   );
 };

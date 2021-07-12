@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
 import firebase from "../Firebase";
 
-export const useTodos = (selectedProject, completed) => {
+export const useTodos = (selectedProject) => {
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState("");
-  const [data, setData] = useState([]);
-
+  const [completedTasks, setCompletedTasks] = useState([]);
+  const [onGoingTasks, setOnGoingTasks] = useState([]);
   useEffect(() => {
-    setIsLoading(true);
     const getTodos = firebase
       .firestore()
       .collection("todos")
@@ -19,7 +18,8 @@ export const useTodos = (selectedProject, completed) => {
             docId: todo.id,
           }));
 
-          setData(todos.filter((todo) => todo.completed === completed));
+          setCompletedTasks(todos.filter((todo) => todo.completed === true));
+          setOnGoingTasks(todos.filter((todo) => todo.completed === false));
           setIsLoading(false);
         },
         (error) => setIsError(error)
@@ -27,11 +27,12 @@ export const useTodos = (selectedProject, completed) => {
     return () => {
       getTodos();
     };
-  }, [selectedProject, completed]);
+  }, [selectedProject]);
 
   return {
     isLoading,
     isError,
-    data,
+    completedTasks,
+    onGoingTasks,
   };
 };

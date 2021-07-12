@@ -10,7 +10,7 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 
-import firebase from "../../../../Firebase";
+import firebase from "../../Firebase";
 
 const DeleteTodoModal = ({ todo, isOpen, onClose }) => {
   const onDeleteTask = () => {

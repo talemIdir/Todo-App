@@ -10,9 +10,9 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 
-import firebase from "../../../../Firebase";
+import firebase from "../../Firebase";
 
-const AddTodoModal = ({ todo, isOpen, onClose }) => {
+const TodoCheckModal = ({ todo, isOpen, onClose }) => {
   const onConfirm = (e) => {
     e.preventDefault();
     firebase
@@ -22,7 +22,7 @@ const AddTodoModal = ({ todo, isOpen, onClose }) => {
       .update({
         completed: !todo.completed,
       })
-      .then(() => onClose());
+      .then(onClose());
   };
   return (
     <Modal isOpen={isOpen} onClose={onClose} size="lg" isCentered>
@@ -47,4 +47,4 @@ const AddTodoModal = ({ todo, isOpen, onClose }) => {
   );
 };
 
-export default AddTodoModal;
+export default TodoCheckModal;

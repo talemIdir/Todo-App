@@ -1,9 +1,9 @@
 import { DeleteIcon } from "@chakra-ui/icons";
 import { Checkbox, Flex, useDisclosure } from "@chakra-ui/react";
 import React from "react";
-import DeleteTodoModal from "../Modal/DeleteTodoModal";
+import DeleteTodoModal from "../../../../components/Modal/DeleteTodoModal";
 
-import TodoCheckModal from "../Modal/TodoCheckModal";
+import TodoCheckModal from "../../../../components/Modal/TodoCheckModal";
 
 const Todo = ({ todo }) => {
   const checkModal = useDisclosure();
