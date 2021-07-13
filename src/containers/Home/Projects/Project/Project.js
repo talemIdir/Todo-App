@@ -1,16 +1,9 @@
 import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
-import { Container, Flex, HStack, Text, useDisclosure } from "@chakra-ui/react";
+import { Flex, HStack, Text, useDisclosure } from "@chakra-ui/react";
 import React from "react";
-import { connect } from "react-redux";
 import DeleteProjectModal from "../../../../components/Modal/DeleteProjectModal";
-import { selectProject } from "../../../../store/actions/projectActions";
 
-const Project = (props) => {
-  const handleSelectProject = (e) => {
-    e.preventDefault();
-    props.selectProject({ name: props.name, docId: props.docId });
-  };
-
+const Project = ({ project, handleSelectProject }) => {
   const deleteModal = useDisclosure();
 
   return (
@@ -25,17 +18,22 @@ const Project = (props) => {
       _hover={{
         background: "gray.700",
       }}
-      onClick={handleSelectProject}
     >
       <DeleteProjectModal
         isOpen={deleteModal.isOpen}
         onClose={deleteModal.onClose}
-        project={{ name: props.name, docId: props.docId }}
+        project={project}
+        handleSelectProject={handleSelectProject}
       />
-      <Text fontSize="2xl" color="whiteAlpha.800">
-        {props.name}
+      <Text
+        fontSize="2xl"
+        color="whiteAlpha.800"
+        onClick={() => handleSelectProject(project)}
+        flex="1"
+      >
+        {project.name}
       </Text>
-      <HStack>
+      <HStack spacing="5">
         <EditIcon
           w={6}
           h={6}
@@ -58,10 +56,4 @@ const Project = (props) => {
   );
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    selectProject: ({ name, docId }) => dispatch(selectProject(name, docId)),
-  };
-};
-
-export default connect(null, mapDispatchToProps)(Project);
+export default Project;

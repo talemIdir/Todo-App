@@ -1,5 +1,5 @@
 import { DeleteIcon } from "@chakra-ui/icons";
-import { Checkbox, Flex, useDisclosure } from "@chakra-ui/react";
+import { Checkbox, Flex, HStack, useDisclosure } from "@chakra-ui/react";
 import React from "react";
 import DeleteTodoModal from "../../../../components/Modal/DeleteTodoModal";
 
@@ -11,12 +11,13 @@ const Todo = ({ todo }) => {
   const deleteModal = useDisclosure();
 
   return (
-    <Flex
+    <HStack
       w="100%"
       justifyContent="space-between"
       alignItems="center"
       backgroundColor="#21212B"
       padding="15"
+      spacing={15}
       borderRadius="10"
     >
       <TodoCheckModal
@@ -49,7 +50,7 @@ const Todo = ({ todo }) => {
           cursor: "pointer",
         }}
       />
-    </Flex>
+    </HStack>
   );
 };
 

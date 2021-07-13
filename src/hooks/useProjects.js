@@ -7,6 +7,7 @@ export const useProjects = (userUID) => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
+    setIsLoading(true);
     const getProjects = firebase
       .firestore()
       .collection("projects")

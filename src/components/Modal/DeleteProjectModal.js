@@ -1,9 +1,7 @@
-import { CheckIcon } from "@chakra-ui/icons";
 import {
   Button,
   Center,
   CircularProgress,
-  Heading,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -16,7 +14,12 @@ import React, { useState } from "react";
 
 import firebase from "../../Firebase";
 
-const DeleteProjectModal = ({ project, isOpen, onClose }) => {
+const DeleteProjectModal = ({
+  project,
+  isOpen,
+  onClose,
+  handleSelectProject,
+}) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const onDeleteTask = () => {
@@ -32,14 +35,13 @@ const DeleteProjectModal = ({ project, isOpen, onClose }) => {
         });
       })
       .finally(() => {
-        console.log("here");
         firebase
           .firestore()
           .collection("projects")
           .doc(project.docId)
           .delete()
           .then(() => {
-            onClose();
+            handleSelectProject(null);
           })
           .catch((error) => {
             console.error("Error removing document: ", error);

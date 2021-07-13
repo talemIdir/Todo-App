@@ -14,7 +14,6 @@ import firebase from "../../Firebase";
 
 const TodoCheckModal = ({ todo, isOpen, onClose }) => {
   const onConfirm = (e) => {
-    e.preventDefault();
     firebase
       .firestore()
       .collection("todos")

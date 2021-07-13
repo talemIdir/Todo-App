@@ -6,7 +6,9 @@ export const useTodos = (selectedProject) => {
   const [isError, setIsError] = useState("");
   const [completedTasks, setCompletedTasks] = useState([]);
   const [onGoingTasks, setOnGoingTasks] = useState([]);
+
   useEffect(() => {
+    setIsLoading(true);
     const getTodos = firebase
       .firestore()
       .collection("todos")

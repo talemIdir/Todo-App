@@ -6,11 +6,6 @@ import { signIn, signOut } from "../../store/actions/authActions";
 import SignUpForm from "./SignUpForm/SignUpForm";
 
 const SignUp = (props) => {
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    props.signIn();
-  };
-
   return (
     <Flex h="100vh">
       <Center flex={{ base: 1, md: 1.3, lg: 1 }} bg="gray.100">

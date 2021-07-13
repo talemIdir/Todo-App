@@ -9,14 +9,22 @@ import {
   Container,
 } from "@chakra-ui/react";
 import React from "react";
+import { connect } from "react-redux";
+import { selectProject } from "../../../store/actions/projectActions";
 
 import Addproject from "./Project/AddProject/Addproject";
 import Project from "./Project/Project";
 
-const Projects = ({ userUID, projects }) => {
+const Projects = ({ userUID, projects, selectProject }) => {
   const { isOpen, onToggle } = useDisclosure();
-
-  console.log(projects);
+  const handleSelectProject = (project) => {
+    project === null && projects.length !== 0
+      ? selectProject({
+          name: projects.data[0].name,
+          docId: projects.data[0].docId,
+        })
+      : selectProject({ name: project.name, docId: project.docId });
+  };
 
   return (
     <VStack
@@ -65,8 +73,8 @@ const Projects = ({ userUID, projects }) => {
           return (
             <Project
               key={project.docId}
-              name={project.name}
-              docId={project.docId}
+              project={project}
+              handleSelectProject={handleSelectProject}
             />
           );
         })}
@@ -75,4 +83,10 @@ const Projects = ({ userUID, projects }) => {
   );
 };
 
-export default Projects;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    selectProject: ({ name, docId }) => dispatch(selectProject(name, docId)),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(Projects);
